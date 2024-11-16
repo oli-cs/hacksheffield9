@@ -2,7 +2,7 @@ from mido import MidiFile
 from turtle import *
 import time
 
-file = MidiFile('rick.mid', clip=True)
+file = MidiFile('sun.mid', clip=True)
 
 # Ensure midi file has only one track (+ 1 for metadata)
 if len(file.tracks) != 2:
@@ -19,63 +19,6 @@ for instruction in file.tracks[1]:
         print(list[2].split("note=",1)[1])
         stream.append(str(int(list[2].split("note=",1)[1]) % 12))
 
-setup(1920, 1080)
-bgcolor("black")
-color("white")
-width(3) 
-up()
-goto(-960,0)
-down()
-
-loop = 0
-for note in stream:
-    setheading(0)
-    forward(10)
-
-    if int(note) == 0:
-        right(90)
-        for i in range(6):
-            forward(5)
-        left(90)
-        forward(10)
-        left(90)
-        for i in range(6):
-            forward(5)
-        right(90)
-        print("6 units down")
-    elif int(note) <= 5 and int(note) > 0:
-        right(90)
-        for i in range(int(note)):
-            forward(10)
-        left(90)
-        forward(10)
-        left(90)
-        for i in range(int(note)):
-            forward(10)
-        right(90)
-        print(int(note), " units down")
-    else:
-        left(90)
-        for i in range(int(note)-5):
-            forward(10)
-        right(90)
-        forward(10)
-        right(90)
-        for i in range(int(note)-5):
-            forward(10)
-        left(90)
-        print(int(note)-5, " units up")
-    
-    loop = loop + 1
-    if loop >= 95:
-        up()
-        forward(1000)
-        break
-
-while (1):
-    time.sleep(1)
-
-'''
 notes =	{
   "A": 9,
   "A#Bb": 10,
@@ -105,4 +48,61 @@ notes =	{
 }
 
 translatedStream = [notes[index] for index in stream]
-'''
+print(translatedStream)
+
+setup(1920, 1080)
+bgcolor("black")
+color("white")
+width(3) 
+up()
+goto(-960,0)
+down()
+
+loop = 0
+for note in stream:
+    setheading(0)
+    forward(10)
+
+    if int(note) == 0:
+        right(90)
+        for i in range(6):
+            forward(10)
+        left(90)
+        forward(10)
+        left(90)
+        for i in range(6):
+            forward(10)
+        right(90)
+        print("6 units down")
+    elif int(note) <= 5 and int(note) > 0:
+        right(90)
+        for i in range(int(note)):
+            forward(10)
+        left(90)
+        forward(10)
+        left(90)
+        for i in range(int(note)):
+            forward(10)
+        right(90)
+        print(int(note), " units down")
+    else:
+        left(90)
+        for i in range(int(note)-5):
+            forward(10)
+        right(90)
+        forward(10)
+        right(90)
+        for i in range(int(note)-5):
+            forward(10)
+        left(90)
+        print(int(note)-5, " units up")
+    
+    loop = loop + 1
+    if loop >= 95:
+        break
+
+up()
+forward(2000)
+
+while (1):
+    time.sleep(1)
