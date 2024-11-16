@@ -8,15 +8,21 @@ WAIT_SECS = 0.5
 
 ##LEFT IS UP
 
-def write_left() -> None:
-    pass
+def write_left(file) -> None:
+    file.write("left({speed})".format(speed=SPEED))
+    file.write("while accelerometer.is_gesture != 'left':\n        pass")
+    file.write("stop()")
+    return
 
-def write_right() -> None:
-    pass
+def write_right(file) -> None:
+    file.write("right({speed})".format(speed=SPEED))
+    file.write("while accelerometer.is_gesture != 'right':\n        pass")
+    file.write("stop()")
 
-def write_forward(scaler:float) -> None:
-    pass
-
+def write_forward(file,scaler:float) -> None:
+    file.write("forward({speed})".format(speed=(SPEED)))
+    file.write("sleep({time})".format(WAIT_SECS*scaler))
+    file.write("stop()")
 
 def generate_micropython(notes : list):
     with open("maze_solution.py") as file:
@@ -65,42 +71,28 @@ def stop(brake=True):
             file.write("forward({speed})".format(speed=SPEED))
             distance : int = NOTE_HEIGHT_MAPPING[note]
             if distance > 0:
-                file.write("left({speed})".format(speed=SPEED))
-                file.write("while accelerometer.is_gesture != 'left':\n        pass")
-                file.write("stop()")
+                write_left(file)
+                write_forward(file,distance)
+                write_right(file)
 
-                file.write("forward({speed})".format(speed=(SPEED)))
-                file.write("sleep({time})".format(WAIT_SECS*distance))
-                file.write("stop()")
+                write_forward(file,1)
                 
-                file.write("right({speed})".format(speed=SPEED))
-                file.write("while accelerometer.is_gesture != 'right':\n        pass")
-                file.write("stop()")
-                
-                file.write("forward({speed})".format(speed=(SPEED)))
-                file.write("sleep({time})".format(WAIT_SECS))
-                file.write("stop()")
+                write_right(file)
+                write_forward(file,distance)
+                write_left(file)
 
-                file.write("right({speed})".format(speed=SPEED))
-                file.write("while accelerometer.is_gesture != 'right':\n        pass")
-                file.write("stop()")
-
-                file.write("forward({speed})".format(speed=(SPEED)))
-                file.write("sleep({time})".format(WAIT_SECS*distance))
-                file.write("stop()")
-
-                file.write("left({speed})".format(speed=SPEED))
-                file.write("while accelerometer.is_gesture != 'left':\n        pass")
-                file.write("stop()")
             elif distance < 0:
                 distance = abs(distance)
-                file.write("right({speed})".format(speed=SPEED))
-                file.write("forward({speed})".format(speed=(SPEED*distance)))
-                file.write("left({speed})".format(speed=SPEED))
-                file.write("forward({speed})".format(speed=(SPEED)))
-                file.write("left({speed})".format(speed=SPEED))
-                file.write("forward({speed})".format(speed=(SPEED*distance)))
-                file.write("right({speed})".format(speed=SPEED))
+                write_right(file)
+                write_forward(file,distance)
+                write_left(file)
+
+                write_forward(file,1)
+                
+                write_left(file)
+                write_forward(file,distance)
+                write_right(file)
+
             else:
                 print("distance was zero")
                 exit(1)
