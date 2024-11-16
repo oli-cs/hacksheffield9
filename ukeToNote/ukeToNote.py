@@ -2,7 +2,22 @@ import numpy as np
 from scipy.fft import *
 from scipy.io import wavfile
 
-def freq(file, start_time, end_time):
+frequencies = [
+    [[213.5,226.55],"A"],
+    [[226.56,240],"A#Bb"],
+    [[240.01,254.25],"B"],
+    [[254.26,269.4],"C"],
+    [[269.41,285.45],"C#Db"],
+    [[285.46,302.4],"D"],
+    [[302.41,320.35],"D#Eb"],
+    [[320.36,339.4],"E"],
+    [[339.41,359.6],"F"],
+    [[359.6,381],"F#Gb"],
+    [[381.1,403.6],"G"],
+    [[403.61,427.6],"G#Ab"]
+]
+
+def calc_freq(file, start_time, end_time):
 
     # Open the file and convert to mono
     sr, data = wavfile.read(file)
@@ -28,24 +43,24 @@ def freq(file, start_time, end_time):
     freq = xf[idx]
     return freq
 
-nowfreq = freq("notes/A.wav",0000,1000)
-print(freq("notes/A.wav",0000,1000))
+def calc_note(raw, notes):
 
-frequencies = [
-    [[213.5,226.55],"A"],
-    [[226.56,240],"A#Bb"],
-    [[240.01,254.25],"B"],
-    [[254.26,269.4],"C"],
-    [[269.41,285.45],"C#Db"],
-    [[285.46,2302.4],"D"],
-    [[302.41,320.35],"D#Eb"],
-    [[320.36,339.4],"E"],
-    [[339.41,359.6],"F"],
-    [[359.6,381],"F#Gb"],
-    [[381.1,403.6],"G"],
-    [[403.61,427.6],"G#Ab"]
-]
+    normal = (raw % 213.5) + 213.5
+    print(normal)
+    for i in range(len(notes)):
+        if normal > notes[i][0][0] and normal < notes[i][0][1]:
+            return notes[i][1]
+    
 
-simpfreq = (nowfreq % 213.5)+213.5
 
-print(simpfreq)
+nowfreq = calc_freq("notes/A.wav",0000,10000)
+print("raw: ",nowfreq,"note: ",calc_note(nowfreq, frequencies))
+
+nowfreq = calc_freq("notes/C.wav",0000,10000)
+print("raw: ",nowfreq,"note: ",calc_note(nowfreq, frequencies))
+
+nowfreq = calc_freq("notes/E.wav",0000,10000)
+print("raw: ",nowfreq,"note: ",calc_note(nowfreq, frequencies))
+
+nowfreq = calc_freq("notes/G.wav",0000,15000)
+print("raw: ",nowfreq,"note: ",calc_note(nowfreq, frequencies))
