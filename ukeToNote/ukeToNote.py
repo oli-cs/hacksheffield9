@@ -1,4 +1,5 @@
 import numpy as np
+import librosa, librosa.display
 from scipy.fft import *
 from scipy.io import wavfile
 
@@ -46,7 +47,6 @@ def calc_freq(file, start_time, end_time):
 def calc_note(raw, notes):
 
     normal = (raw % 213.5) + 213.5
-    print(normal)
     for i in range(len(notes)):
         if normal > notes[i][0][0] and normal < notes[i][0][1]:
             return notes[i][1]
@@ -62,5 +62,9 @@ print("raw: ",nowfreq,"note: ",calc_note(nowfreq, frequencies))
 nowfreq = calc_freq("notes/E.wav",0000,10000)
 print("raw: ",nowfreq,"note: ",calc_note(nowfreq, frequencies))
 
-nowfreq = calc_freq("notes/G.wav",0000,15000)
+nowfreq = calc_freq("notes/G.wav",0000,10000)
 print("raw: ",nowfreq,"note: ",calc_note(nowfreq, frequencies))
+
+nowfreq = calc_freq("notes/C chord.wav",0000,10000)
+print("raw: ",nowfreq,"note: ",calc_note(nowfreq, frequencies))
+
