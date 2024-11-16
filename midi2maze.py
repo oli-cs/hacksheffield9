@@ -101,6 +101,8 @@ for note in stream:
     if loop >= 95:
         break
 
+setheading(0)
+forward(10)
 up()
 forward(2000)
 
