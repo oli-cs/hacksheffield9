@@ -39,9 +39,11 @@ def stop(brake=True):
         pin16.write_digital(0)
         pin14.write_digital(0)
 forward(600)
+
 right(600)
 sleep(0.375)
 stop()
+
 forward(600)
 sleep(1.25)
 stop()
