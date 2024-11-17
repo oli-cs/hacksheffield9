@@ -1,8 +1,8 @@
 ARBITARY_FORWARD_MOVEMENT = 5
-NOTE_HEIGHT_MAPPING = {"A":2, "A#Bb":2.5, "B":3, "C":-3,
-                        "C#Db":-0.5, "D":-1, "D#Eb":-1.5,
-                        "E":-2, "F":-2.5, "F#Gb":0.5, "G":1,
-                        "G#Ab":1.5}
+NOTE_HEIGHT_MAPPING = {"A":0.4, "A#Bb":0.5, "B":0.6, "C":-0.6,
+                        "C#Db":-0.1, "D":-0.2, "D#Eb":-0.3,
+                        "E":-0.4, "F":-0.5, "F#Gb":0.1, "G":0.2,
+                        "G#Ab":0.3}
 SPEED = 600
 TURN = 0.3575
 WAIT_SECS = 0.5
@@ -81,6 +81,7 @@ def stop(brake=True):
                 write_right(file)
                 write_forward(file,distance)
                 write_left(file)
+                file.write("\n\n")
 
             elif distance < 0:
                 distance = abs(distance)
@@ -93,6 +94,7 @@ def stop(brake=True):
                 write_left(file)
                 write_forward(file,distance)
                 write_right(file)
+                file.write("\n\n")
 
             else:
                 print("distance was zero")
