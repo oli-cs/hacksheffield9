@@ -115,7 +115,7 @@ def generate_notes():
     onsets = calc_note_envelopes(uke)
     notes = []
 
-    for i in range(12):
+    for i in range(11):
         if len(onsets[0]) == i+1:
             pass
         else:
