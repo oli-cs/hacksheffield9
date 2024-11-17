@@ -22,6 +22,7 @@ frequencies = [
     [[381.1,403.6],"G"],
     [[403.61,427.6],"G#Ab"]
 ]
+uke = "notes/here comes the sun extract.wav"
 
 def calc_freq(file, start_time, end_time):
 
@@ -109,12 +110,11 @@ def calc_note_envelopes(file):
     new_cqt=cqt_thresholded(CdB,cqt_threshold)
     return calc_onset(new_cqt,pre_post_max, False)
 
-
 #loop through audio file note by note (using envelopes) and calculate the list of notes
 def generate_notes():
     
     #array of note locations!!
-    onsets = calc_note_envelopes("notes/here comes the sun extract.wav")
+    onsets = calc_note_envelopes(uke)
     notes = []
 
     for i in range(len(onsets[0])):
