@@ -21,7 +21,7 @@ def write_right(file) -> None:
 
 def write_forward(file,scaler:float) -> None:
     file.write("forward({speed})".format(speed=(SPEED)))
-    file.write("sleep({time})".format(WAIT_SECS*scaler))
+    file.write("sleep({time})".format(time=WAIT_SECS*scaler))
     file.write("stop()")
 
 def generate_micropython(notes : list):
