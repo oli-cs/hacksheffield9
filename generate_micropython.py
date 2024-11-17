@@ -9,14 +9,14 @@ WAIT_SECS = 0.5
 ##LEFT IS UP
 
 def write_left(file) -> None:
-    file.write("left({speed})\n".format(speed=SPEED))
-    file.write("while accelerometer.was_gesture != 'right':\n\tpass\n")
+    file.write("right({speed})\n".format(speed=SPEED))
+    file.write("sleep(0.37)\n")
     file.write("stop()\n")
     return
 
 def write_right(file) -> None:
     file.write("right({speed})\n".format(speed=SPEED))
-    file.write("while accelerometer.was_gesture != 'left':\n\tpass\n")
+    file.write("sleep(0.37)\n")
     file.write("stop()\n")
 
 def write_forward(file,scaler:float) -> None:
