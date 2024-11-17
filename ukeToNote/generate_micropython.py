@@ -10,13 +10,13 @@ WAIT_SECS = 0.5
 
 def write_left(file) -> None:
     file.write("left({speed})\n".format(speed=SPEED))
-    file.write("while accelerometer.is_gesture != 'left':\n        pass\n")
+    file.write("while accelerometer.is_gesture != 'left':\n\tpass\n")
     file.write("stop()\n")
     return
 
 def write_right(file) -> None:
     file.write("right({speed})\n".format(speed=SPEED))
-    file.write("while accelerometer.is_gesture != 'right':\n        pass\n")
+    file.write("while accelerometer.is_gesture != 'right':\n\tpass\n")
     file.write("stop()\n")
 
 def write_forward(file,scaler:float) -> None:
@@ -26,7 +26,7 @@ def write_forward(file,scaler:float) -> None:
 
 def generate_micropython(notes : list):
     with open("output/maze_solution.py","w") as file:
-        file.write("from microbit import *")
+        file.write("from microbit import *\n")
         file.write("""from time import sleep
 def forward(speed):
     if (speed > 1023) or (speed < 1):
