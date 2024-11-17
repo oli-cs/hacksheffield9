@@ -4,19 +4,20 @@ NOTE_HEIGHT_MAPPING = {"A":2, "A#Bb":2.5, "B":3, "C":-3,
                         "E":-2, "F":-2.5, "F#Gb":0.5, "G":1,
                         "G#Ab":1.5}
 SPEED = 600
+TURN = 0.3575
 WAIT_SECS = 0.5
 
 ##LEFT IS UP
 
 def write_left(file) -> None:
     file.write("right({speed})\n".format(speed=SPEED))
-    file.write("sleep(0.37)\n")
+    file.write("sleep({turn})\n".format(turn=TURN))
     file.write("stop()\n")
     return
 
 def write_right(file) -> None:
     file.write("right({speed})\n".format(speed=SPEED))
-    file.write("sleep(0.37)\n")
+    file.write("sleep({turn})\n".format(turn=TURN))
     file.write("stop()\n")
 
 def write_forward(file,scaler:float) -> None:
