@@ -1,4 +1,4 @@
-from ukeToNote import *
+from ukeToNote import generate_notes
 
 notes = generate_notes()
 
@@ -101,4 +101,4 @@ def stop(brake=True):
                 print("distance was zero")
                 exit(1)
             
-
+generate_micropython(notes)

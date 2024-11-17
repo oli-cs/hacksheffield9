@@ -7,7 +7,6 @@ from scipy.fft import *
 from scipy.io import wavfile
 
 from ipywidgets import IntSlider, FloatSlider, fixed, Checkbox
-
 frequencies = [
     [[213.5,226.55],"A"],
     [[226.56,240],"A#Bb"],
