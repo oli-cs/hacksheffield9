@@ -1,6 +1,6 @@
 from ukeToNote import *
 
-print(generate_notes())
+notes = generate_notes()
 
 ARBITARY_FORWARD_MOVEMENT = 5
 NOTE_HEIGHT_MAPPING = {"A":2, "A#Bb":2.5, "B":3, "C":-3,
