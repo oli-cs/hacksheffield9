@@ -9,20 +9,20 @@ WAIT_SECS = 0.5
 ##LEFT IS UP
 
 def write_left(file) -> None:
-    file.write("left({speed})".format(speed=SPEED))
-    file.write("while accelerometer.is_gesture != 'left':\n        pass")
-    file.write("stop()")
+    file.write("left({speed})\n".format(speed=SPEED))
+    file.write("while accelerometer.is_gesture != 'left':\n        pass\n")
+    file.write("stop()\n")
     return
 
 def write_right(file) -> None:
-    file.write("right({speed})".format(speed=SPEED))
-    file.write("while accelerometer.is_gesture != 'right':\n        pass")
-    file.write("stop()")
+    file.write("right({speed})\n".format(speed=SPEED))
+    file.write("while accelerometer.is_gesture != 'right':\n        pass\n")
+    file.write("stop()\n")
 
 def write_forward(file,scaler:float) -> None:
-    file.write("forward({speed})".format(speed=(SPEED)))
-    file.write("sleep({time})".format(time=WAIT_SECS*scaler))
-    file.write("stop()")
+    file.write("forward({speed})\n".format(speed=(SPEED)))
+    file.write("sleep({time})\n".format(time=WAIT_SECS*scaler))
+    file.write("stop()\n")
 
 def generate_micropython(notes : list):
     with open("output/maze_solution.py","w") as file:
@@ -68,7 +68,7 @@ def stop(brake=True):
         pin14.write_digital(0)
 """)
         for note in notes:
-            file.write("forward({speed})".format(speed=SPEED))
+            file.write("forward({speed})\n".format(speed=SPEED))
             distance : int = NOTE_HEIGHT_MAPPING[note]
             if distance > 0:
                 write_left(file)
