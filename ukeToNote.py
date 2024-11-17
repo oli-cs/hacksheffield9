@@ -20,7 +20,7 @@ frequencies = [
     [[381.1,403.6],"G"],
     [[403.61,427.6],"G#Ab"]
 ]
-uke = "notes/here comes the sun extract.wav"
+uke = 'notes/here_comes_the_sun.wav'
 
 def calc_freq(file, start_time, end_time):
 
@@ -115,14 +115,13 @@ def generate_notes():
     onsets = calc_note_envelopes(uke)
     notes = []
 
-    for i in range(len(onsets[0])):
+    for i in range(12):
         if len(onsets[0]) == i+1:
             pass
         else:
-            slice = calc_freq("notes/here comes the sun extract.wav",(onsets[0][i]*1000),(onsets[0][i+1]*1000))
+            slice = calc_freq(uke,(onsets[0][i]*1000),(onsets[0][i+1]*1000))
         notes.append(calc_note(slice,frequencies))
 
     return notes
 
-
-print(generate_notes())
+#print(generate_notes())
