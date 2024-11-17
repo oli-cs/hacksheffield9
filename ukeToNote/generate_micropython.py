@@ -1,7 +1,3 @@
-from ukeToNote import generate_notes
-
-notes = generate_notes()
-
 ARBITARY_FORWARD_MOVEMENT = 5
 NOTE_HEIGHT_MAPPING = {"A":2, "A#Bb":2.5, "B":3, "C":-3,
                         "C#Db":-0.5, "D":-1, "D#Eb":-1.5,
@@ -29,7 +25,7 @@ def write_forward(file,scaler:float) -> None:
     file.write("stop()")
 
 def generate_micropython(notes : list):
-    with open("maze_solution.py") as file:
+    with open("output/maze_solution.py") as file:
         file.write("from microbit import *")
         file.write("""from time import sleep
 def forward(speed):
@@ -100,5 +96,3 @@ def stop(brake=True):
             else:
                 print("distance was zero")
                 exit(1)
-            
-generate_micropython(notes)
