@@ -25,7 +25,7 @@ def write_forward(file,scaler:float) -> None:
     file.write("stop()")
 
 def generate_micropython(notes : list):
-    with open("output/maze_solution.py") as file:
+    with open("output/maze_solution.py","w") as file:
         file.write("from microbit import *")
         file.write("""from time import sleep
 def forward(speed):
