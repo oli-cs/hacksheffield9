@@ -61,48 +61,48 @@ down()
 loop = 0
 for note in stream:
     setheading(0)
-    forward(10)
+    forward(47)
 
     if int(note) == 0:
         right(90)
         for i in range(6):
-            forward(10)
+            forward(47)
         left(90)
-        forward(10)
+        forward(47)
         left(90)
         for i in range(6):
-            forward(10)
+            forward(47)
         right(90)
         print("6 units down")
     elif int(note) <= 5 and int(note) > 0:
         right(90)
         for i in range(int(note)):
-            forward(10)
+            forward(47)
         left(90)
-        forward(10)
+        forward(47)
         left(90)
         for i in range(int(note)):
-            forward(10)
+            forward(47)
         right(90)
         print(int(note), " units down")
     else:
         left(90)
         for i in range(int(note)-5):
-            forward(10)
+            forward(47)
         right(90)
-        forward(10)
+        forward(47)
         right(90)
         for i in range(int(note)-5):
-            forward(10)
+            forward(47)
         left(90)
         print(int(note)-5, " units up")
     
     loop = loop + 1
-    if loop >= 95:
+    if loop > 20:
         break
 
 setheading(0)
-forward(10)
+forward(47)
 up()
 forward(2000)
 
