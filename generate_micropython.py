@@ -3,7 +3,7 @@ NOTE_HEIGHT_MAPPING = {"A":2, "A#Bb":2.5, "B":3, "C":-3,
                         "C#Db":-0.5, "D":-1, "D#Eb":-1.5,
                         "E":-2, "F":-2.5, "F#Gb":0.5, "G":1,
                         "G#Ab":1.5}
-SPEED = 200
+SPEED = 600
 WAIT_SECS = 0.5
 
 ##LEFT IS UP
