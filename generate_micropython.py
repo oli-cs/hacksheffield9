@@ -1,11 +1,11 @@
 ARBITARY_FORWARD_MOVEMENT = 5
-NOTE_HEIGHT_MAPPING = {"A":0.4, "A#Bb":0.5, "B":0.6, "C":-0.6,
-                        "C#Db":-0.1, "D":-0.2, "D#Eb":-0.3,
-                        "E":-0.4, "F":-0.5, "F#Gb":0.1, "G":0.2,
-                        "G#Ab":0.3}
-SPEED = 600
+NOTE_HEIGHT_MAPPING = {"A":1.25, "A#Bb":1.25, "B":1.25, "C":-1.25,
+                        "C#Db":-0.75, "D":-1, "D#Eb":-1.25,
+                        "E":-0.75, "F":-1.25, "F#Gb":1, "G":1,
+                        "G#Ab":0.75}
+SPEED = 500
 TURN = 0.3575
-WAIT_SECS = 0.5
+WAIT_SECS = 0.75
 
 ##LEFT IS UP
 
@@ -44,8 +44,8 @@ def left(speed):
     else:
         pin12.write_analog(speed)
         pin8.write_digital(0)
-        pin16.write_analog(1023)
-        pin14.write_analog(1023)
+        pin16.write_analog(0)
+        pin14.write_analog(speed)
 
 def right(speed):
     if (speed > 1023) or (speed < 1):
@@ -53,8 +53,8 @@ def right(speed):
     else:
         pin16.write_analog(speed)
         pin14.write_digital(0)
-        pin12.write_analog(1023)
-        pin8.write_analog(1023)
+        pin12.write_analog(0)
+        pin8.write_analog(speed)
 
 def stop(brake=True):
     if brake==True:
